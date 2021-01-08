@@ -1,0 +1,9 @@
+C:\Users\badea\source\repos\DevLearn\TestsData\bin\Debug\netstandard2.0\TestsData.deps.json
+C:\Users\badea\source\repos\DevLearn\TestsData\bin\Debug\netstandard2.0\TestsData.dll
+C:\Users\badea\source\repos\DevLearn\TestsData\bin\Debug\netstandard2.0\TestsData.pdb
+C:\Users\badea\source\repos\DevLearn\TestsData\obj\Debug\netstandard2.0\TestsData.csprojAssemblyReference.cache
+C:\Users\badea\source\repos\DevLearn\TestsData\obj\Debug\netstandard2.0\TestsData.AssemblyInfoInputs.cache
+C:\Users\badea\source\repos\DevLearn\TestsData\obj\Debug\netstandard2.0\TestsData.AssemblyInfo.cs
+C:\Users\badea\source\repos\DevLearn\TestsData\obj\Debug\netstandard2.0\TestsData.csproj.CoreCompileInputs.cache
+C:\Users\badea\source\repos\DevLearn\TestsData\obj\Debug\netstandard2.0\TestsData.dll
+C:\Users\badea\source\repos\DevLearn\TestsData\obj\Debug\netstandard2.0\TestsData.pdb
