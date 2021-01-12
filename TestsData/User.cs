@@ -5,13 +5,13 @@ using System.Text;
 
 namespace TestsData
 {
-    public class Slide
+    class User
     {
         [Key]
-        public int IdSlide { get; set; }
+        public string Mail { get; set; }
+        public string Name { get; set; }
+        
         [Required]
-        public string Information { get; set; }
-
-
+        public string Password { get; set; }
     }
 }

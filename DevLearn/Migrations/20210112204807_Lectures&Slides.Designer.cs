@@ -3,14 +3,16 @@ using DevLearn;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace DevLearn.Migrations
 {
     [DbContext(typeof(TestsDataDbContext))]
-    partial class TestsDataDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210112204807_Lectures&Slides")]
+    partial class LecturesSlides
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

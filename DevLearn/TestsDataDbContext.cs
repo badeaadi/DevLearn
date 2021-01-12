@@ -5,7 +5,7 @@ namespace DevLearn
 {
     internal class TestsDataDbContext : DbContext
     {
-           public TestsDataDbContext()
+        public TestsDataDbContext()
         {
 
         }
