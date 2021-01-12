@@ -14,10 +14,7 @@ namespace DevLearn
 
         }
 
-        public DbSet<Author> author { get; set; }
-        // gettere si setere aici 
 
-        //    public virtual DbSet<powerUser> Books { get; set; }
 
     }
 }
