@@ -2,6 +2,13 @@
   "version": 3,
   "targets": {
     ".NETStandard,Version=v2.0": {
+      "EntityFramework/6.4.4": {
+        "type": "package",
+        "build": {
+          "buildTransitive/EntityFramework.props": {},
+          "buildTransitive/EntityFramework.targets": {}
+        }
+      },
       "Microsoft.EntityFrameworkCore/2.1.1": {
         "type": "package",
         "dependencies": {
@@ -758,6 +765,63 @@
     }
   },
   "libraries": {
+    "EntityFramework/6.4.4": {
+      "sha512": "yj1+/4tci7Panu3jKDHYizxwVm0Jvm7b7m057b5h4u8NUHGCR8WIWirBTw+8EptRffwftIWPBeIRGNKD1ewEMQ==",
+      "type": "package",
+      "path": "entityframework/6.4.4",
+      "hasTools": true,
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "Icon.png",
+        "build/EntityFramework.DefaultItems.props",
+        "build/EntityFramework.props",
+        "build/EntityFramework.targets",
+        "build/Microsoft.Data.Entity.Build.Tasks.dll",
+        "build/netcoreapp3.0/EntityFramework.props",
+        "build/netcoreapp3.0/EntityFramework.targets",
+        "buildTransitive/EntityFramework.props",
+        "buildTransitive/EntityFramework.targets",
+        "buildTransitive/netcoreapp3.0/EntityFramework.props",
+        "buildTransitive/netcoreapp3.0/EntityFramework.targets",
+        "content/net40/App.config.install.xdt",
+        "content/net40/App.config.transform",
+        "content/net40/Web.config.install.xdt",
+        "content/net40/Web.config.transform",
+        "entityframework.6.4.4.nupkg.sha512",
+        "entityframework.nuspec",
+        "lib/net40/EntityFramework.SqlServer.dll",
+        "lib/net40/EntityFramework.SqlServer.xml",
+        "lib/net40/EntityFramework.dll",
+        "lib/net40/EntityFramework.xml",
+        "lib/net45/EntityFramework.SqlServer.dll",
+        "lib/net45/EntityFramework.SqlServer.xml",
+        "lib/net45/EntityFramework.dll",
+        "lib/net45/EntityFramework.xml",
+        "lib/netstandard2.1/EntityFramework.SqlServer.dll",
+        "lib/netstandard2.1/EntityFramework.SqlServer.xml",
+        "lib/netstandard2.1/EntityFramework.dll",
+        "lib/netstandard2.1/EntityFramework.xml",
+        "tools/EntityFramework6.PS2.psd1",
+        "tools/EntityFramework6.PS2.psm1",
+        "tools/EntityFramework6.psd1",
+        "tools/EntityFramework6.psm1",
+        "tools/about_EntityFramework6.help.txt",
+        "tools/init.ps1",
+        "tools/install.ps1",
+        "tools/net40/any/ef6.exe",
+        "tools/net40/any/ef6.pdb",
+        "tools/net40/win-x86/ef6.exe",
+        "tools/net40/win-x86/ef6.pdb",
+        "tools/net45/any/ef6.exe",
+        "tools/net45/any/ef6.pdb",
+        "tools/net45/win-x86/ef6.exe",
+        "tools/net45/win-x86/ef6.pdb",
+        "tools/netcoreapp3.0/any/ef6.dll",
+        "tools/netcoreapp3.0/any/ef6.pdb",
+        "tools/netcoreapp3.0/any/ef6.runtimeconfig.json"
+      ]
+    },
     "Microsoft.EntityFrameworkCore/2.1.1": {
       "sha512": "JuWdlcEkd6VePS1uaiEfGDCuXNkRHFdNuEEdRhlU5E/ikuhSBDy7j0L4hoLAO4/w5u4YpSy59Xwtsq+cIAo+3w==",
       "type": "package",
@@ -970,7 +1034,7 @@
       ]
     },
     "Microsoft.NETCore.Platforms/1.1.0": {
-      "sha512": "kz0PEW2lhqygehI/d6XsPCQzD7ff7gUJaVGPVETX611eadGsA3A877GdSlU0LRVMCTH/+P3o2iDTak+S08V2+A==",
+      "sha512": "bcXNeboaCipNAYiie5MiCOR79VLYY3+zaRyNCnJSaOttvtxAZYRyAWgg6UY4Qw8q8v1A7SmD7hADxlegwYEpQg==",
       "type": "package",
       "path": "microsoft.netcore.platforms/1.1.0",
       "files": [
@@ -1272,7 +1336,7 @@
       ]
     },
     "System.Collections/4.0.11": {
-      "sha512": "YUJGz6eFKqS0V//mLt25vFGrrCvOnsXjlvFQs+KimpwNxug9x0Pzy4PlFMU3Q2IzqAa9G2L4LsK3+9vCBK7oTg==",
+      "sha512": "ZPDSFBlLqX7UiY2dsZH1EDGJEdMHX7uOh/VmZOtGuYhULx4SChfw+v2uhSya9e6Y/PH++r1rhfAuKraZUyadSg==",
       "type": "package",
       "path": "system.collections/4.0.11",
       "files": [
@@ -1525,7 +1589,7 @@
       ]
     },
     "System.Diagnostics.Debug/4.0.11": {
-      "sha512": "w5U95fVKHY4G8ASs/K5iK3J5LY+/dLFd4vKejsnI/ZhBsWS9hQakfx3Zr7lRWKg4tAw9r4iktyvsTagWkqYCiw==",
+      "sha512": "tzuI+9WJg1om2pmEte37PqgrcBH8RJx4Q11MFIgxYkIGVdXG5z0mSFfnMOckxsXRILQQXjv8wwAV94jT0u8Q+Q==",
       "type": "package",
       "path": "system.diagnostics.debug/4.0.11",
       "files": [
@@ -1783,7 +1847,7 @@
       ]
     },
     "System.Linq/4.1.0": {
-      "sha512": "bQ0iYFOQI0nuTnt+NQADns6ucV4DUvMdwN6CbkB1yj8i7arTGiTN5eok1kQwdnnNWSDZfIUySQY+J3d5KjWn0g==",
+      "sha512": "iH1YCUZWUQNyqNnKT8jAqtlHdUxdDCIOnxUzTPeChdd/tIN0d4+cDKMqYwbGzYix2a9ZzTr2oz8oJJKa+5Mizw==",
       "type": "package",
       "path": "system.linq/4.1.0",
       "files": [
@@ -1854,7 +1918,7 @@
       ]
     },
     "System.Linq.Expressions/4.1.0": {
-      "sha512": "I+y02iqkgmCAyfbqOmSDOgqdZQ5tTj80Akm5BPSS8EeB0VGWdy6X1KCoYe8Pk6pwDoAKZUOdLVxnTJcExiv5zw==",
+      "sha512": "5ejBcFkyGVMq95fQSmQ4ZHZDFMUKTy9FyWe9e5V3QNi0j7x7W+psagnNZCKF8PTTFeyI9EQ0+y9Os9LFqH6HtQ==",
       "type": "package",
       "path": "system.linq.expressions/4.1.0",
       "files": [
@@ -1937,7 +2001,7 @@
       ]
     },
     "System.Linq.Queryable/4.0.1": {
-      "sha512": "Yn/WfYe9RoRfmSLvUt2JerP0BTGGykCZkQPgojaxgzF2N0oPo+/AhB8TXOpdCcNlrG3VRtsamtK2uzsp3cqRVw==",
+      "sha512": "jRaLQfzv0NvcFETIGKss1bEjVpywmxIZm3pXg55Yo9h7/zLZy7sMcRstKxbs/7zD905BhCgLUPkY78pfFtDblg==",
       "type": "package",
       "path": "system.linq.queryable/4.0.1",
       "files": [
@@ -2063,7 +2127,7 @@
       ]
     },
     "System.ObjectModel/4.0.12": {
-      "sha512": "tAgJM1xt3ytyMoW4qn4wIqgJYm7L7TShRZG4+Q4Qsi2PCcj96pXN7nRywS9KkB3p/xDUjc2HSwP9SROyPYDYKQ==",
+      "sha512": "RcdGGoXdL1Fl5px3KbzHxcx4E9MakiNnYwKDJXU49jFHOxOranhr3wMUqdp1D/RUT+u46u2YZQLQxpHRMcEDlg==",
       "type": "package",
       "path": "system.objectmodel/4.0.12",
       "files": [
@@ -2212,7 +2276,7 @@
       ]
     },
     "System.Reflection.Emit/4.0.1": {
-      "sha512": "P2wqAj72fFjpP6wb9nSfDqNBMab+2ovzSDzUZK7MVIm54tBJEPr9jWfSjjoTpPwj1LeKcmX3vr0ttyjSSFM47g==",
+      "sha512": "FhDaa76pvgONc4CE7xKn0/oq4FKmWFe8MGbiajpI6w+kOeJVK9Nh2AYPW6hIgqenwcHtD/Lu2USPLaJZj7F0Qw==",
       "type": "package",
       "path": "system.reflection.emit/4.0.1",
       "files": [
@@ -2243,7 +2307,7 @@
       ]
     },
     "System.Reflection.Emit.ILGeneration/4.0.1": {
-      "sha512": "Ov6dU8Bu15Bc7zuqttgHF12J5lwSWyTf1S+FJouUXVMSqImLZzYaQ+vRr1rQ0OZ0HqsrwWl4dsKHELckQkVpgA==",
+      "sha512": "GJ+2N/bxsE+fMsfaTSMPdh0PLqmgylMJp5fktSOgIDdFYgjPm6LVbyQe/clUttcEQteMO7uUMBAbWCjJIWG4aw==",
       "type": "package",
       "path": "system.reflection.emit.ilgeneration/4.0.1",
       "files": [
@@ -2275,7 +2339,7 @@
       ]
     },
     "System.Reflection.Emit.Lightweight/4.0.1": {
-      "sha512": "sSzHHXueZ5Uh0OLpUQprhr+ZYJrLPA2Cmr4gn0wj9+FftNKXx8RIMKvO9qnjk2ebPYUjZ+F2ulGdPOsvj+MEjA==",
+      "sha512": "a3b2aI3qlZKZOpRSiw9ghJR4DGMX+x55fh/5nmZY7wXPjUEK7HKxmRm9gMgWgRG1uc1ubM8MrI+GKxRCu8nruQ==",
       "type": "package",
       "path": "system.reflection.emit.lightweight/4.0.1",
       "files": [
@@ -2307,7 +2371,7 @@
       ]
     },
     "System.Reflection.Extensions/4.0.1": {
-      "sha512": "GYrtRsZcMuHF3sbmRHfMYpvxZoIN2bQGrYGerUiWLEkqdEUQZhH3TRSaC/oI4wO0II1RKBPlpIa1TOMxIcOOzQ==",
+      "sha512": "NjwXH8RZdcJ0s8Ymu4YvugiD2jjm4fe+cZ5KSqSYxF/4abt7f2N1BnZa8bgLVfCtQTXpxhkkhSGjk8JX8FVotg==",
       "type": "package",
       "path": "system.reflection.extensions/4.0.1",
       "files": [
@@ -2419,7 +2483,7 @@
       ]
     },
     "System.Reflection.TypeExtensions/4.1.0": {
-      "sha512": "tsQ/ptQ3H5FYfON8lL4MxRk/8kFyE0A+tGPXmVP967cT/gzLHYxIejIYSxp4JmIeFHVP78g/F2FE1mUUTbDtrg==",
+      "sha512": "NbhVT2CdS691R+VZ/0sGL/LOZlIQjCo40zoZRlQ09zOctAHaak7f49zCG7QpHpGjZSm/7fD1PRiuYRvc2fanJw==",
       "type": "package",
       "path": "system.reflection.typeextensions/4.1.0",
       "files": [
@@ -2644,7 +2708,7 @@
       ]
     },
     "System.Runtime.Extensions/4.1.0": {
-      "sha512": "CUOHjTT/vgP0qGW22U4/hDlOqXmcPq5YicBaXdUR2UiUoLwBT+olO6we4DVbq57jeX5uXH2uerVZhf0qGj+sVQ==",
+      "sha512": "II8K2sDDiYRPZFV1MkAQmSNUCalVmuuoIiGR4tUdU+Q9GYmj3l+OOqz+59yOrki2Z7S+gTFBh6XJ/d1uoyv9Qg==",
       "type": "package",
       "path": "system.runtime.extensions/4.1.0",
       "files": [
@@ -3063,6 +3127,7 @@
   },
   "projectFileDependencyGroups": {
     ".NETStandard,Version=v2.0": [
+      "EntityFramework >= 6.4.4",
       "Microsoft.EntityFrameworkCore.SqlServer >= 2.1.1",
       "NETStandard.Library >= 2.0.3"
     ]
@@ -3110,6 +3175,10 @@
       "netstandard2.0": {
         "targetAlias": "netstandard2.0",
         "dependencies": {
+          "EntityFramework": {
+            "target": "Package",
+            "version": "[6.4.4, )"
+          },
           "Microsoft.EntityFrameworkCore.SqlServer": {
             "target": "Package",
             "version": "[2.1.1, )"

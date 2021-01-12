@@ -35,3 +35,4 @@ C:\Users\badea\source\repos\DevLearn\DevLearn\obj\Debug\netcoreapp2.1\DevLearn.g
 C:\Users\badea\source\repos\DevLearn\DevLearn\obj\Debug\netcoreapp2.1\DevLearn.csproj.CopyComplete
 C:\Users\badea\source\repos\DevLearn\DevLearn\bin\Debug\netcoreapp2.1\TestsData.dll
 C:\Users\badea\source\repos\DevLearn\DevLearn\bin\Debug\netcoreapp2.1\TestsData.pdb
+C:\Users\badea\source\repos\DevLearn\DevLearn\obj\Debug\netcoreapp2.1\UserSecretsAssemblyInfo.cs
