@@ -21,7 +21,13 @@ namespace DevLearn
 
         public void ConfigureServices(IServiceCollection services)
         {
-           services.AddDbContext<TestsDataContext>
+
+            services.AddCors(options => options.AddPolicy("AllowAll", 
+                p => p.WithOrigins("http://localhost:3000", "http://127.0.0.1:3000")
+                      .AllowAnyMethod()
+                      .AllowAnyHeader().AllowCredentials()));
+
+            services.AddDbContext<TestsDataContext>
                (o => o.UseSqlServer(Configuration.
                 GetConnectionString("ConnectionString")));
          
@@ -33,10 +39,6 @@ namespace DevLearn
             });
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
-
-
-            services.AddDbContext<TestsDataDbContext>(options =>
-                options.UseSqlServer(Configuration.GetConnectionString("TestsConnection")));
         }
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
@@ -53,6 +55,7 @@ namespace DevLearn
                 app.UseExceptionHandler("/Home/Error");
                 // Where is UseHttps();
             }
+            app.UseCors("AllowAll");
 
             app.UseStaticFiles();
             app.UseCookiePolicy();

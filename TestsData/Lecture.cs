@@ -8,6 +8,7 @@ namespace TestsData
     public class Lecture
     {
         [Key]
+        [Required]
         public int IdLecture {get;set;}
         public ICollection<Slide> Slides { get; set; }
         

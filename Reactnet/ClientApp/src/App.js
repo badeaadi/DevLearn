@@ -1,12 +1,11 @@
-import logo from "./logo.svg";
 import "./App.css";
-import TestBox from "./components/TestBox";
 import "./styles/testbox.css";
 import Navbar from "react-bootstrap/Navbar";
 import Nav from "react-bootstrap/Nav";
 import { LinkContainer } from "react-router-bootstrap";
 import { useEffect, useState } from "react";
 import Routes from "./Routes";
+import { FaGithub } from "react-icons/fa";
 
 function App() {
   const [accountLogged, setAccountLogged] = useState(-1);
@@ -27,7 +26,14 @@ function App() {
             {accountLogged === -1 ? (
               <Navbar.Collapse className="justify-content-end">
                 <LinkContainer to="/login">
-                  <Nav.Link>Logout</Nav.Link>
+                  <Nav.Link
+                    onClick={() => {
+                      setAccountLogged(1);
+                      console.log("aaa");
+                    }}
+                  >
+                    Log out
+                  </Nav.Link>
                 </LinkContainer>
                 <LinkContainer to={"/" + tabs[0]}>
                   <Nav.Link>{tabs[0]}</Nav.Link>
@@ -50,6 +56,11 @@ function App() {
         </Navbar.Collapse>
       </Navbar>
       <Routes />
+      <Navbar bg="dark" variant="dark" sticky="bottom">
+        <Navbar.Brand href="https://github.com/badeaadi">
+          <FaGithub /> Adrian Catalin Badea
+        </Navbar.Brand>
+      </Navbar>
     </div>
   );
 }

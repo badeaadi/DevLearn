@@ -1,6 +1,6 @@
 import React from "react";
 import { Route, Switch } from "react-router-dom";
-import { Home, LogIn, Lectures } from "./components";
+import { Home, LogIn, Lectures, NotFound } from "./components";
 
 export default function Routes() {
   return (
@@ -11,11 +11,11 @@ export default function Routes() {
       <Route exact path="/login">
         <LogIn />
       </Route>
-      <Route exact path="/tests">
-        <LogIn />
-      </Route>
       <Route exact path="/lectures">
         <Lectures />
+      </Route>
+      <Route>
+        <NotFound />
       </Route>
     </Switch>
   );

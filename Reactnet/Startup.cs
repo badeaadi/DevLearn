@@ -56,6 +56,7 @@ namespace Reactnet
                     name: "default",
                     pattern: "{controller}/{action=Index}/{id?}");
             });
+            app.UseCors("AllowAll");
 
             app.UseSpa(spa =>
             {
