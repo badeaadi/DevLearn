@@ -21,6 +21,10 @@ namespace DevLearn
 
         public void ConfigureServices(IServiceCollection services)
         {
+           services.AddDbContext<TestsDataContext>
+               (o => o.UseSqlServer(Configuration.
+                GetConnectionString("ConnectionString")));
+         
             services.Configure<CookiePolicyOptions>(opts =>
             {
                 // Determines whether user consent for non-essential cookies is needed for a given request

@@ -1,10 +1,9 @@
 {
   "version": 2,
-  "dgSpecHash": "b0X0nDKpV+Xho7Sdrs3I6B5L+XfxTEjpOfElyTUhAPC39X6hwSo0e4nGzAhgfKM4zxq/y3qESCBOdh1ZGDo3mw==",
+  "dgSpecHash": "u4pA4fwjhh6pmY7CJ96W/JzTIc7M8PU+g/+XxV566czKitd85rZ1VZJ/IkJcj+QaD7svov3WHf1PDVpfcpMwcQ==",
   "success": true,
   "projectFilePath": "C:\\Users\\badea\\source\\repos\\DevLearn\\TestsData\\TestsData.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\badea\\.nuget\\packages\\entityframework\\6.4.4\\entityframework.6.4.4.nupkg.sha512",
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\microsoft.entityframeworkcore\\2.1.1\\microsoft.entityframeworkcore.2.1.1.nupkg.sha512",
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\microsoft.entityframeworkcore.abstractions\\2.1.1\\microsoft.entityframeworkcore.abstractions.2.1.1.nupkg.sha512",
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\microsoft.entityframeworkcore.analyzers\\2.1.1\\microsoft.entityframeworkcore.analyzers.2.1.1.nupkg.sha512",

@@ -11,7 +11,7 @@ namespace TestsData
         public int IdItem { get; set; }
         public string ItemInformation { get; set; }
 
-        public ICollection<string> Variants { get; set; }
+        public ICollection<Variant> Variants { get; set; }
 
         [Required]
         public int RightVariant { get; set; }

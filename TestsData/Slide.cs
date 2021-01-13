@@ -9,6 +9,7 @@ namespace TestsData
     {
         [Key]
         public int IdSlide { get; set; }
+
         [Required]
         public string Information { get; set; }
 
