@@ -10,7 +10,7 @@ namespace TestsData
         [Key]
         public int IdSlide { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Information is required")]
         public string Information { get; set; }
 
 

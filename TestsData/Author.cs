@@ -11,10 +11,11 @@ namespace TestsData
         [Key]
         [Column("IdAuthor")]
         public int IdAuthor { get; set; }
-        
+
+
+        [Required(ErrorMessage ="Name is required")]
         public string FirstName { get; set; }
 
-        [Required]
         public string LastName { get; set; }
 
 

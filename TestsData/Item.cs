@@ -13,7 +13,7 @@ namespace TestsData
 
         public ICollection<Variant> Variants { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Solution is required")]
         public int RightVariant { get; set; }
 
     }
