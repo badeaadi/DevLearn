@@ -5,9 +5,7 @@ VisualStudioVersion = 16.0.30523.141
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DevLearn", "DevLearn\DevLearn.csproj", "{004AFE4E-B106-4AAD-BAD4-BF1041A568B4}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestsData", "TestsData\TestsData.csproj", "{7F79DF70-F01C-4208-9F07-D0622874B4C1}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Reactnet", "Reactnet\Reactnet.csproj", "{DCA3607B-5A75-4689-9C74-627B1BC9C4EC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Reactnet", "Reactnet\Reactnet.csproj", "{DCA3607B-5A75-4689-9C74-627B1BC9C4EC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -19,10 +17,6 @@ Global
 		{004AFE4E-B106-4AAD-BAD4-BF1041A568B4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{004AFE4E-B106-4AAD-BAD4-BF1041A568B4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{004AFE4E-B106-4AAD-BAD4-BF1041A568B4}.Release|Any CPU.Build.0 = Release|Any CPU
-		{7F79DF70-F01C-4208-9F07-D0622874B4C1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{7F79DF70-F01C-4208-9F07-D0622874B4C1}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{7F79DF70-F01C-4208-9F07-D0622874B4C1}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{7F79DF70-F01C-4208-9F07-D0622874B4C1}.Release|Any CPU.Build.0 = Release|Any CPU
 		{DCA3607B-5A75-4689-9C74-627B1BC9C4EC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{DCA3607B-5A75-4689-9C74-627B1BC9C4EC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DCA3607B-5A75-4689-9C74-627B1BC9C4EC}.Release|Any CPU.ActiveCfg = Release|Any CPU
