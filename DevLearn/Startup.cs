@@ -21,7 +21,7 @@ namespace DevLearn
 
         public void ConfigureServices(IServiceCollection services)
         {
-
+            
             services.AddCors(options => options.AddPolicy("AllowAll", 
                 p => p.WithOrigins("http://localhost:3000", "http://127.0.0.1:3000")
                       .AllowAnyMethod()
@@ -30,13 +30,14 @@ namespace DevLearn
             services.AddDbContext<TestsDataContext>
                (o => o.UseSqlServer(Configuration.
                 GetConnectionString("ConnectionString")));
-         
+
+            /*
             services.Configure<CookiePolicyOptions>(opts =>
             {
                 // Determines whether user consent for non-essential cookies is needed for a given request
                 opts.CheckConsentNeeded = context => true;
                 opts.MinimumSameSitePolicy = SameSiteMode.None;
-            });
+            });*/
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }

@@ -9,6 +9,7 @@ namespace TestsData
     {
         [Key]
         public int IdItem { get; set; }
+        [MaxLength(250)]
         public string ItemInformation { get; set; }
 
         public ICollection<Variant> Variants { get; set; }

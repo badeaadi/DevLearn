@@ -1,16 +1,26 @@
 import "./App.css";
-import "./styles/testbox.css";
 import Navbar from "react-bootstrap/Navbar";
 import Nav from "react-bootstrap/Nav";
 import { LinkContainer } from "react-router-bootstrap";
 import { useEffect, useState } from "react";
 import Routes from "./Routes";
 import { FaGithub } from "react-icons/fa";
+import axios from "axios";
 
 function App() {
   const [accountLogged, setAccountLogged] = useState(-1);
+  const [lectures, setLectures] = useState([]);
   const tabs = ["Tests", "Lectures"];
-  useEffect(() => {});
+  useEffect(async () => {
+    axios
+      .get("/lectures")
+      .then((res) => res.json())
+      .then((data) => {
+        setLectures(data);
+        console.log(data);
+        console.log(lectures);
+      });
+  }, []);
 
   return (
     <div className="App container py-3">
