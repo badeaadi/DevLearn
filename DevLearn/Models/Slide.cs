@@ -3,14 +3,18 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Text;
 
-namespace TestsData
+namespace DevLearn.Models
 {
     public class Slide
     {
         [Key]
         public int IdSlide { get; set; }
 
-        [Required(ErrorMessage = "Information is required")]
-        public string Information { get; set; }
+        [Required(ErrorMessage = "Title is required")]
+        public string Title { get; set; }
+
+        [Required(ErrorMessage = "Description is required")]
+
+        public string Description { get; set; }
     }
 }

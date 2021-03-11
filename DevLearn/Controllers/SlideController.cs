@@ -3,8 +3,9 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using TestsData;
+using DevLearn.DatabaseContext;
 
-namespace Reactnet.Controllers
+namespace DevLearn.Controllers
 {
 
     [ApiController]
@@ -20,6 +21,13 @@ namespace Reactnet.Controllers
             var slides = DbContext.Slide.ToList();
             return Ok(slides);
         }
+        [HttpGet]
+        [Route("{id}")]
+        public ActionResult GetById(int id)
+        {
 
+            var slide = DbContext.Slide.FirstOrDefault(a => a.IdSlide == id);
+            return Ok(slide);
+        }
     }
 }

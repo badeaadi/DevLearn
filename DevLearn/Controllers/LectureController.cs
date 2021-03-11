@@ -3,9 +3,12 @@ using DevLearn.Data;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using TestsData;
 using System;
 using System.Globalization;
+
+using DevLearn.DatabaseContext;
+using DevLearn.Data;
+using DevLearn.Models;
 
 namespace Reactnet.Controllers
 {
@@ -40,23 +43,39 @@ namespace Reactnet.Controllers
         {
             var lecture = DbContext.Lectures.FirstOrDefault(g => g.IdLecture == id);
 
-            if (lecture == null) {
+            if (lecture == null)
+            {
                 return Ok("Lecture deleted");
             }
-                DbContext.Remove(lecture);
+            DbContext.Remove(lecture);
 
-                DbContext.SaveChanges();
+            DbContext.SaveChanges();
 
-                return Ok("Lecture deleted");
+            return Ok("Lecture deleted");
 
 
-         }
+        }
+        [Route("{id}")]
+        [HttpPut]
+        public ActionResult Put(int id, [FromBody] LectureData lectureData)
+        {
+            var lecture = DbContext.Lectures.Include(l => l.Author).Include(l => l.Slides).FirstOrDefault(l => l.IdLecture == id);
+            lecture.Author = DbContext.Author.FirstOrDefault(g => g.IdAuthor == lectureData.AuthorId);
+            DbContext.SaveChanges();
+
+            return Ok("Lecture changed");
+        }
+
         [HttpPost]
         public ActionResult Post([FromBody] LectureData lectureData)
         {
+            if (lectureData.AuthorId == null)
+                return NotFound("Author not found");
+
             var lecture = new Lecture
-            {
+            {   
                 Author = DbContext.Author.FirstOrDefault(g => g.IdAuthor == lectureData.AuthorId),
+                LectureTitle = lectureData.LectureTitle,
                 AddedDate = DateTime.Now
             };
 
@@ -64,6 +83,16 @@ namespace Reactnet.Controllers
             DbContext.SaveChanges();
 
             return Ok("Lecture added");
+        }
+
+
+        [HttpGet]
+        [Route("slides{id}")]
+        public ActionResult GetByLectureId(int id)
+        {
+
+            var slides = DbContext.Lectures.Include(l => l.Slides).FirstOrDefault(g => g.IdLecture == id).Slides;
+            return Ok(slides);
         }
     }
 

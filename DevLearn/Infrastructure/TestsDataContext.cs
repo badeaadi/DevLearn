@@ -2,7 +2,10 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 
-namespace TestsData
+using DevLearn.Models;
+
+
+namespace DevLearn.DatabaseContext
 {
     public class TestsDataContext : DbContext
     {   
@@ -28,16 +31,21 @@ namespace TestsData
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<Problem>().HasKey(p => p.IdProblem);
 
+            modelBuilder.Entity<Problem>()
+                .HasOne(p => p.ProblemLecture)
+                .WithMany(b => b.Problems);
+
+            modelBuilder.Entity<Pupil>()
+                .HasIndex(p => p.Username)
+                .IsUnique();
         }
-        public DbSet<Item> Items { get; set; }
         public DbSet<Lecture> Lectures { get; set; }
 
-        public DbSet<Test> Tests { get; set; }
-
         public DbSet<Author> Author { get; set; }
+
         public DbSet<Slide> Slide { get; set; }
 
-        public DbSet<Variant> Variants { get; set; }
     }
 }

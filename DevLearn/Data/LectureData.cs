@@ -10,6 +10,7 @@ namespace DevLearn.Data
     {
 
         public int AuthorId { get; set; }
+        public String LectureTitle { get; set; }
 
     }
 }

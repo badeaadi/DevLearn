@@ -3,7 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using TestsData;
+
+using DevLearn.DatabaseContext;
+using DevLearn.Data;
+using DevLearn.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace Reactnet.Controllers
 {
@@ -20,6 +24,32 @@ namespace Reactnet.Controllers
 
             var authors = DbContext.Author.ToList();
             return Ok(authors);
+        }
+
+        [HttpGet]
+        [Route("{id}")]
+        public ActionResult GetById(int id)
+        {
+
+            var author = DbContext.Author.FirstOrDefault(a => a.IdAuthor == id);
+
+            return Ok(author);
+        }
+
+
+        [HttpPost]
+        public ActionResult Post([FromBody] AuthorData authorData)
+        {
+            var author = new Author
+            {
+                FirstName = authorData.FirstName,
+                LastName = authorData.LastName
+            };
+
+            DbContext.Add(author);
+            DbContext.SaveChanges();
+
+            return Ok("Author added");
         }
 
     }
