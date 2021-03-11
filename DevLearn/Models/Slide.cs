@@ -12,7 +12,5 @@ namespace TestsData
 
         [Required(ErrorMessage = "Information is required")]
         public string Information { get; set; }
-
-
     }
 }

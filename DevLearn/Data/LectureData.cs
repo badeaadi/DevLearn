@@ -9,10 +9,7 @@ namespace DevLearn.Data
     public class LectureData
     {
 
-
-        public int IdLecture { get; set; }
-        public Author Author { get; set; }
-        public DateTime AddedDate { get; set; }
+        public int AuthorId { get; set; }
 
     }
 }

@@ -31,14 +31,6 @@ namespace DevLearn
                (o => o.UseSqlServer(Configuration.
                 GetConnectionString("ConnectionString")));
 
-            /*
-            services.Configure<CookiePolicyOptions>(opts =>
-            {
-                // Determines whether user consent for non-essential cookies is needed for a given request
-                opts.CheckConsentNeeded = context => true;
-                opts.MinimumSameSitePolicy = SameSiteMode.None;
-            });*/
-
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }
 

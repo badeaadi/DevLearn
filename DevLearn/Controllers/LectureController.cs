@@ -4,6 +4,8 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using TestsData;
+using System;
+using System.Globalization;
 
 namespace Reactnet.Controllers
 {
@@ -17,7 +19,7 @@ namespace Reactnet.Controllers
         public ActionResult Get()
         {
 
-            var lectures = DbContext.Lectures.ToList();
+            var lectures = DbContext.Lectures.Include(l => l.Author).Include(l => l.Slides).ToList();
             return Ok(lectures);
         }
 
@@ -26,7 +28,8 @@ namespace Reactnet.Controllers
         public ActionResult GetById(int id)
         {
 
-            var lecture = DbContext.Lectures.FirstOrDefault(l => l.IdLecture == id);
+            var lecture = DbContext.Lectures.Include(l => l.Author).Include(l => l.Slides).FirstOrDefault(l => l.IdLecture == id);
+
             return Ok(lecture);
         }
 
@@ -48,21 +51,19 @@ namespace Reactnet.Controllers
 
 
          }
-        [Route("{id}")]
         [HttpPost]
         public ActionResult Post([FromBody] LectureData lectureData)
         {
             var lecture = new Lecture
             {
-                IdLecture = lectureData.IdLecture,
-                Author = lectureData.Author,
-                AddedDate = lectureData.AddedDate
+                Author = DbContext.Author.FirstOrDefault(g => g.IdAuthor == lectureData.AuthorId),
+                AddedDate = DateTime.Now
             };
 
             DbContext.Add(lecture);
             DbContext.SaveChanges();
 
-            return Ok(lecture);
+            return Ok("Lecture added");
         }
     }
 

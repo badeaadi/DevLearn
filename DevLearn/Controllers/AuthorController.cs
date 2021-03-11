@@ -21,5 +21,7 @@ namespace Reactnet.Controllers
             var authors = DbContext.Author.ToList();
             return Ok(authors);
         }
+
     }
+
 }
