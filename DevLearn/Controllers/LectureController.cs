@@ -1,5 +1,4 @@
 ﻿using System.Linq;
-using DevLearn.Data;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -22,9 +21,10 @@ namespace Reactnet.Controllers
         public ActionResult Get()
         {
 
-            var lectures = DbContext.Lectures.Include(l => l.Author).Include(l => l.Slides).ToList();
+            var lectures = DbContext.Lectures.Include(l => l.Author).Include(l => l.Problems).Include(l => l.Slides).ToList();
             return Ok(lectures);
         }
+
 
         [HttpGet]
         [Route("{id}")]
@@ -34,6 +34,16 @@ namespace Reactnet.Controllers
             var lecture = DbContext.Lectures.Include(l => l.Author).Include(l => l.Slides).FirstOrDefault(l => l.IdLecture == id);
 
             return Ok(lecture);
+        }
+
+
+        [HttpGet]
+        [Route("slides{id}")]
+        public ActionResult GetByLectureId(int id)
+        {
+
+            var slides = DbContext.Lectures.Include(l => l.Slides).FirstOrDefault(g => g.IdLecture == id).Slides;
+            return Ok(slides);
         }
 
 
@@ -59,8 +69,8 @@ namespace Reactnet.Controllers
         [HttpPut]
         public ActionResult Put(int id, [FromBody] LectureData lectureData)
         {
-            var lecture = DbContext.Lectures.Include(l => l.Author).Include(l => l.Slides).FirstOrDefault(l => l.IdLecture == id);
-            lecture.Author = DbContext.Author.FirstOrDefault(g => g.IdAuthor == lectureData.AuthorId);
+            var lecture = DbContext.Lectures.Include(l => l.Author).Include(l => l.Slides).Include(l => l.Problems).FirstOrDefault(l => l.IdLecture == id);
+            lecture.Author = DbContext.Authors.FirstOrDefault(g => g.IdAuthor == lectureData.AuthorId);
             DbContext.SaveChanges();
 
             return Ok("Lecture changed");
@@ -69,15 +79,19 @@ namespace Reactnet.Controllers
         [HttpPost]
         public ActionResult Post([FromBody] LectureData lectureData)
         {
-            if (lectureData.AuthorId == null)
+
+            Author author = DbContext.Authors.FirstOrDefault(g => g.IdAuthor == lectureData.AuthorId);
+            if (author == null)
                 return NotFound("Author not found");
+
 
             var lecture = new Lecture
             {   
-                Author = DbContext.Author.FirstOrDefault(g => g.IdAuthor == lectureData.AuthorId),
+                Author = DbContext.Authors.FirstOrDefault(g => g.IdAuthor == lectureData.AuthorId),
                 LectureTitle = lectureData.LectureTitle,
                 AddedDate = DateTime.Now
             };
+            
 
             DbContext.Add(lecture);
             DbContext.SaveChanges();
@@ -86,14 +100,7 @@ namespace Reactnet.Controllers
         }
 
 
-        [HttpGet]
-        [Route("slides{id}")]
-        public ActionResult GetByLectureId(int id)
-        {
-
-            var slides = DbContext.Lectures.Include(l => l.Slides).FirstOrDefault(g => g.IdLecture == id).Slides;
-            return Ok(slides);
-        }
+        
     }
 
 }

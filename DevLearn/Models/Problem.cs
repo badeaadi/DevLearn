@@ -12,8 +12,6 @@ namespace DevLearn.Models
         [Key]
         [Required]
         public int IdProblem { get; set; }
-        
-        public Lecture ProblemLecture { get; set; }
 
         [Required]
         [MaxLength(250)]

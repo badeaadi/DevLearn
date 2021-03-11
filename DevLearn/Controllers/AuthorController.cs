@@ -22,7 +22,7 @@ namespace Reactnet.Controllers
         public ActionResult Get()
         {
 
-            var authors = DbContext.Author.ToList();
+            var authors = DbContext.Authors.ToList();
             return Ok(authors);
         }
 
@@ -31,7 +31,7 @@ namespace Reactnet.Controllers
         public ActionResult GetById(int id)
         {
 
-            var author = DbContext.Author.FirstOrDefault(a => a.IdAuthor == id);
+            var author = DbContext.Authors.FirstOrDefault(a => a.IdAuthor == id);
 
             return Ok(author);
         }

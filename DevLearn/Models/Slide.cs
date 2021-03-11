@@ -10,6 +10,8 @@ namespace DevLearn.Models
         [Key]
         public int IdSlide { get; set; }
 
+        public int LectureIdLecture { get; set; }
+
         [Required(ErrorMessage = "Title is required")]
         public string Title { get; set; }
 

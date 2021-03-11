@@ -31,21 +31,29 @@ namespace DevLearn.DatabaseContext
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Problem>().HasKey(p => p.IdProblem);
-
             modelBuilder.Entity<Problem>()
-                .HasOne(p => p.ProblemLecture)
-                .WithMany(b => b.Problems);
+                .HasKey(p => p.IdProblem);
+
+            modelBuilder.Entity<Lecture>()
+                .HasMany(l => l.Problems);
 
             modelBuilder.Entity<Pupil>()
                 .HasIndex(p => p.Username)
                 .IsUnique();
+
+            modelBuilder.Entity<Lecture>()
+                .HasMany(l => l.Slides);
+
         }
         public DbSet<Lecture> Lectures { get; set; }
 
-        public DbSet<Author> Author { get; set; }
+        public DbSet<Author> Authors { get; set; }
 
-        public DbSet<Slide> Slide { get; set; }
+        public DbSet<Slide> Slides { get; set; }
+
+        public DbSet<Pupil> Pupils { get; set; }
+
+        public DbSet<Problem> Problems { get; set; }
 
     }
 }
