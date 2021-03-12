@@ -32,6 +32,18 @@ namespace DevLearn.Controllers
             return Ok(slide);
         }
 
+        [Route("{id}")]
+        [HttpPut]
+        public ActionResult ChangeDescription(int id, [FromBody] SlideData slideData)
+        {
+            var slide = DbContext.Slides.FirstOrDefault(s => s.IdSlide == id);
+            slide.Title = slideData.Title;
+            slide.Description = slideData.Description;
+
+            DbContext.SaveChanges();
+            return Ok("Lecture changed");
+        }
+
 
         [HttpPost]
         public ActionResult PostSlide(SlideData slideData)

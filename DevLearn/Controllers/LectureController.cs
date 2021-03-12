@@ -21,7 +21,7 @@ namespace Reactnet.Controllers
         public ActionResult Get()
         {
 
-            var lectures = DbContext.Lectures.Include(l => l.Author).Include(l => l.Problems).Include(l => l.Slides).ToList();
+            var lectures = DbContext.Lectures.Include(l => l.Author).Include(l => l.Slides).ToList();
             return Ok(lectures);
         }
 
