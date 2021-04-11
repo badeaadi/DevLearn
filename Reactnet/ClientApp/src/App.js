@@ -7,25 +7,32 @@ import 'react-notifications/lib/notifications.css';
 import { useEffect, useState } from "react";
 import Routes from "./Routes";
 import { FaGithub } from "react-icons/fa";
-import adminUser from './config';
 import axios from "axios";
 
 function App() {
   const [accountLogged, setAccountLogged] = useState(-1);
-  const [test, setTest] = useState([]);
-  const [user, setUser] = useState({username: adminUser.username, password: adminUser.password})
+  const [problems, setProblems] = useState([]);
+  const [user, setUser] = useState({username: "", password: ""})
   const [lectures, setLectures] = useState([]);
-  const tabs = ["Tests", "Lectures"];
+  const tabs = ["Problems", "Lectures"];
 
 
 
   useEffect(async () => {
+
     axios
       .get("/lectures")
       .then((res) => {
         setLectures(res.data);
-        console.log(res.data);
-        console.log(lectures);
+        //console.log(res.data);
+        //console.log(lectures);
+      });
+      axios
+      .get("/problems")
+      .then((res) => {
+        setProblems(res.data);
+        //console.log(res.data);
+        //console.log(problems);
       });
   }, []);
 
@@ -36,7 +43,8 @@ function App() {
               if (res.data.password === password) {
                 setAccountLogged(res.data.idPupil);
                 console.log("Logged in");
-                setUser({username: username, password: password});
+                NotificationManager.success("Logged in successfully ", "OK", 2000, () => {}, true);
+                setUser(username = res.data.username, password = res.data.password);
               }  
               else {
                 console.log("Username or password not found");
@@ -46,9 +54,9 @@ function App() {
 
   const postSlide = (lectureIdLecture, title, description) => {
     axios.post(`/slides`, {
-        lectureIdLecture,
-        title,
-        description
+        LectureId : lectureIdLecture,
+        title : title,
+        description : description
     })
         .then(res => {
             if(res.status === 200) {
@@ -59,7 +67,7 @@ function App() {
 
   const postLecture = (title) => {
       axios.post(`/lectures`, {
-          title
+          LectureTitle : title
         })
           .then(res => {
               if(res.status === 200) {
@@ -69,41 +77,62 @@ function App() {
     }
 
     const handleRegister = (username, password) => {
+      let st;
       axios.get(`/pupils/${username}`)
           .then(res => {
               if(res.status !== 200) {
-                  axios.post(`/pupils`, {
-                      username,
-                      password
-                  })
-                      .then(resp => {
-                          if(resp.status === 200) {
-                              NotificationManager.success("New User ", "Houray", 2000, () => {}, true)
-                          }
-                      })
+                  ;
               } else {
                   NotificationManager.error("User already in db", "Nasol", 2000, () => {}, true)
               }
           })
-    }
-
-    const deleteLecture = (lectureId) => {
-      axios.delete(`/lectures/${lectureId}`)
-          .then(res => {
-              if(res.status === 200) {
-                  NotificationManager.success("Successfully Deleted", "Lecture", 2000, () => {}, true)
-              }
-          })
-    }
-
-    const deleteSlide = (lectureId, slideId) => {
-        axios.delete(``)
-            .then(res => {
-                if(res.status === 200) {
-                    NotificationManager.success("Successfully Deleted", "Slide", 2000, () => {}, true)
-                }
+          .catch(err => {
+            console.log(err);
+            console.log("aici");
+            axios.post(`/pupils`, {
+              Username : username,
+              Password : password
+            })
+              .then(resp => {
+                  if(resp.status === 200) {    
+                    NotificationManager.success("New User ", "Houray", 2000, () => {}, true)
+                    axios.get(`/pupils/${username}`)
+                      .then(res => {
+                        setAccountLogged(res.data.idPupil);
+                        setUser(username = res.data.username, password = res.data.password);
+                      })
+                  }
+              })
             })
     }
+
+    const putRating = (problemId, newRating, link) => {
+      console.log(problemId);
+      axios.put(`/problems/${problemId}`, {
+          ProblemLink: link,
+          ProblemDifficulty: newRating
+      })
+      .then(res => {
+        if(res.status === 200) {
+          NotificationManager.success("Difficulty updated", "Success", 2000, () => {}, true)
+        }
+        else {
+          NotificationManager.error("Error occured", "Nasol", 2000, () => {}, true)
+        }
+      })
+  }
+
+  const postProblem = (link, diff) => {
+    axios.post('/problems', {
+      ProblemLink: link,
+      ProblemDifficulty: diff
+    })
+    .then(res => {
+      if(res.status === 200) {
+        NotificationManager.success("Problem Added", "Success", 2000, () => {}, true)
+      }
+    })
+  } 
 
   return (
     <div className="App container py-3">
@@ -116,12 +145,13 @@ function App() {
         <Navbar.Toggle />
         <Navbar.Collapse className="justify-content-end">
           <Nav activeKey={window.location.pathname}>
-            {accountLogged === -1 ? (
+            {accountLogged !== -1 ? (
               <Navbar.Collapse className="justify-content-end">
-                <LinkContainer to="/logout">
+                <LinkContainer to="/login">
                   <Nav.Link
                     onClick={() => {
-                      setAccountLogged(1);
+                      setAccountLogged(-1);
+                      console.log("aaa");
                     }}
                   >
                     Log out
@@ -147,16 +177,7 @@ function App() {
           </Nav>
         </Navbar.Collapse>
       </Navbar>
-      <Routes
-          lectures = {lectures}
-          user = {user}
-          handleLogin = {handleLogIn}
-          tests
-          postSlides = {postSlide}
-          postLecture = {postLecture}
-          handleRegister = {handleRegister}
-          deleteLecture = {deleteLecture}
-          deleteSlide = {deleteSlide}/>
+      <Routes lectures={lectures} user = {user} handleLogin = {handleLogIn}  problems = {problems} putRating = {putRating} postProblem = {postProblem} postSlides = {postSlide} postLecture = {postLecture} handleRegister={handleRegister}/>
       <Navbar bg="dark" variant="dark" sticky="bottom">
         <Navbar.Brand href="https://github.com/badeaadi">
           <FaGithub /> Adrian Catalin Badea

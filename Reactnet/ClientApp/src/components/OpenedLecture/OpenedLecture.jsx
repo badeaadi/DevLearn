@@ -6,7 +6,7 @@ import React, {useEffect, useState} from "react";
 const OpenedLecture = ({currentLecture, postSlides}) => {
     const [slideDescription, setSlideDescription] = useState("");
     const [slideTitle, setSlideTitle] = useState("");
-    const [currentSlide, setCurrentSlide] = useState(-1);
+    const [currentSlide, setCurrentSlide] = useState(0);
 
     useEffect(() => {
         setCurrentSlide(0);
@@ -22,33 +22,10 @@ const OpenedLecture = ({currentLecture, postSlides}) => {
     }
 
     return (
-        <div className="opened-lecture">
-            <Form onSubmit={submitSlideHandler}>
-                <Form.Group size="lg" controlId="username">
-                    <Form.Label>Title</Form.Label>
-                    <Form.Control
-                        autoFocus
-                        type="title"
-                        value={slideTitle}
-                        onChange={(e) => setSlideTitle(e.target.value)}
-                    />
-                </Form.Group>
-                <Form.Group size="lg" controlId="password">
-                    <Form.Label>Descriptions</Form.Label>
-                    <Form.Control
-                        type="description"
-                        value={slideDescription}
-                        onChange={(e) => setSlideDescription(e.target.value)}
-                    />
-                </Form.Group>
-
-                <Button block size="lg" type="submit" disabled={!validateForm()}>
-                    Add Slide
-                </Button>
-            </Form>
+        <div className="opened-lecture-to-read">
             <Card style={{ width: "70rem" }}>
                 <Card.Body>
-                    <Card.Title>{currentLecture.slides.lectureTitle}</Card.Title>
+                    <Card.Title>{currentLecture.slides[currentSlide].title}</Card.Title>
                     <Card.Text>{currentLecture.slides[currentSlide].description}</Card.Text>
                     <Card.Text>
                         <Button

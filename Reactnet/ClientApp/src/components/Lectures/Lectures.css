@@ -1,7 +1,15 @@
 .lectures {
   display: flex;
   flex-wrap: wrap;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: space-between;
   margin-bottom: 100px;
+}
+.submitLectures {
+  margin: 30px;
+  justify-content : flex-end;
+}
+
+.lecture-seeing {
+  justify-content: flex-start
 }
