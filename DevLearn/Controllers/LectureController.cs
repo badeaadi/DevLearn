@@ -70,7 +70,6 @@ namespace Reactnet.Controllers
         public ActionResult Put(int id, [FromBody] LectureData lectureData)
         {
             var lecture = DbContext.Lectures.Include(l => l.Author).Include(l => l.Slides).Include(l => l.Problems).FirstOrDefault(l => l.IdLecture == id);
-            lecture.Author = DbContext.Authors.FirstOrDefault(g => g.IdAuthor == lectureData.AuthorId);
             DbContext.SaveChanges();
 
             return Ok("Lecture changed");
@@ -79,15 +78,12 @@ namespace Reactnet.Controllers
         [HttpPost]
         public ActionResult Post([FromBody] LectureData lectureData)
         {
-
-            Author author = DbContext.Authors.FirstOrDefault(g => g.IdAuthor == lectureData.AuthorId);
-            if (author == null)
-                return NotFound("Author not found");
-
+            
+            Author author = DbContext.Authors.FirstOrDefault(g => g.IdAuthor == 1);
 
             var lecture = new Lecture
-            {   
-                Author = DbContext.Authors.FirstOrDefault(g => g.IdAuthor == lectureData.AuthorId),
+            {
+                Author = author,
                 LectureTitle = lectureData.LectureTitle,
                 AddedDate = DateTime.Now
             };

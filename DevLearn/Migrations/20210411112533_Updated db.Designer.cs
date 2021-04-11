@@ -4,14 +4,16 @@ using DevLearn.DatabaseContext;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace TestsData.Migrations
 {
     [DbContext(typeof(TestsDataContext))]
-    partial class TestsDataContextModelSnapshot : ModelSnapshot
+    [Migration("20210411112533_Updated db")]
+    partial class Updateddb
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

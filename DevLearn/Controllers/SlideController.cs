@@ -60,5 +60,22 @@ namespace DevLearn.Controllers
 
             return Ok("Slide added");
         }
+
+        [Route("{id}")]
+        [HttpDelete]
+        public ActionResult Delete(int id)
+        {
+            var slide = DbContext.Slides.FirstOrDefault(g => g.IdSlide == id);
+
+            if (slide == null)
+            {
+                return Ok("Slide deleted");
+            }
+            DbContext.Remove(slide);
+
+            DbContext.SaveChanges();
+
+            return Ok("Slide deleted");
+        }
     }
 }

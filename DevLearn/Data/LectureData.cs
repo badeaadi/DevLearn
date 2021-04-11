@@ -8,8 +8,6 @@ namespace DevLearn.Data
 {
     public class LectureData
     {
-
-        public int AuthorId { get; set; }
         public String LectureTitle { get; set; }
 
     }

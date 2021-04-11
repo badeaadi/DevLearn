@@ -34,9 +34,6 @@ namespace DevLearn.DatabaseContext
             modelBuilder.Entity<Problem>()
                 .HasKey(p => p.IdProblem);
 
-            modelBuilder.Entity<Lecture>()
-                .HasMany(l => l.Problems);
-
             modelBuilder.Entity<Pupil>()
                 .HasIndex(p => p.Username)
                 .IsUnique();

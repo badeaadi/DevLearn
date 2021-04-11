@@ -4,23 +4,27 @@ import ListGroup from "react-bootstrap/ListGroup";
 import { useEffect, useState } from "react";
 import "./Lectures.css";
 import Button from "react-bootstrap/Button";
+import { Form } from "react-bootstrap";
+import adminUser from '../../config';
+import OpenedLecture from '../OpenedLecture/OpenedLecture'
 
-export default function Lectures() {
-  const [data, setData] = useState([]);
+const Lectures = ({ lectures, postLecture, postSlides, user, deleteLecture, deleteSlide }) => {
+
+  const [slideDescription, setSlideDescription] = useState("");
+  const [slideTitle, setSlideTitle] = useState("");
+  const [lectureTitle, setLectureTitle] = useState("")
+
   const [openedLecture, setOpenedLecture] = useState(-1);
   const [currentSlide, setCurrentSlide] = useState(-1);
 
-  const arr = ["IT", "Mathematics"];
-  const it = data.slice(0, 7);
-  const mathematics = data.slice(8);
+  let groups = [];
 
   useEffect(() => {
-    fetch("https://jsonplaceholder.typicode.com/users")
-      .then((response) => response.json())
-      .then((json) => {
-        setData(json);
-        // console.log(json);
-      });
+    for(let i = 0; i < lectures.length; i+=5) {
+      groups.push(lectures.slice(i, i + 5));
+    }
+    console.log(groups)
+    console.log(lectures)
   }, []);
 
   const openLecture = (id) => {
@@ -28,73 +32,113 @@ export default function Lectures() {
     setCurrentSlide(0);
   };
 
+  const closeLecture = () => {
+    setOpenedLecture(-1);
+  }
+
+  const submitSlideHandler = (e) => {
+    e.preventDefault();
+    postSlides(lectures[openedLecture].idLecture, slideTitle, slideDescription);
+  }
+
+  const submitLectureHandler = (e) => {
+    e.preventDefault();
+    postLecture(lectureTitle);
+  }
+
+  const validateForm = () => {
+    return slideDescription.length > 0 && slideTitle.length > 0;
+  }
+
+  const submitDeleteLecture = (lectureId) => {
+    deleteLecture(lectureId)
+  }
+
   return (
     <div className="lectures">
       {openedLecture === -1 ? (
-        <div className="lectures">
-          {arr.map((item, idx) => (
-            <Card style={{ width: "18rem" }} key={idx}>
-              <Card.Header>{item}</Card.Header>
+          <div className="all-lectures">
+            <Card style={{ width: "18rem" }}>
+              <Card.Header>Lectures</Card.Header>
               <ListGroup variant="flush">
-                {item === "IT"
-                  ? it.map((dom) => (
+                {
+                  lectures.map((lecture, index) => (
                       <ListGroup.Item
-                        action
-                        onClick={() => {
-                          openLecture(idx);
-                        }}
+                          action
+                          onClick={() => {
+                            openLecture(index);
+                          }}
                       >
-                        {dom.name}
+                        {lecture.lectureTitle}
+                        {
+                          (user.username === adminUser.username && user.password === adminUser.password) ? (
+                              <Button variant="outline-danger"
+                              onClick={() => {
+                                submitDeleteLecture(lecture.idLecture)
+                              }}>X</Button>
+                          ) : ""
+                        }
                       </ListGroup.Item>
-                    ))
-                  : item === "Mathematics"
-                  ? mathematics.map((dom) => (
-                      <ListGroup.Item
-                        action
-                        onClick={() => {
-                          openLecture(idx);
-                        }}
-                      >
-                        {dom.name}
-                      </ListGroup.Item>
-                    ))
-                  : ""}
+                  ))
+                }
               </ListGroup>
             </Card>
-          ))}
-        </div>
+          </div>,
+        (user.username === adminUser.username && user.password === adminUser.password) ? (
+            <Form onSubmit={submitLectureHandler}>
+              <Form.Group size="lg" controlId="username">
+                <Form.Label>Lecture Title</Form.Label>
+                <Form.Control
+                    autoFocus
+                    type="title"
+                    value={lectureTitle}
+                    onChange={(e) => setLectureTitle(e.target.value)}
+                />
+              </Form.Group>
+
+              <Button block size="lg" type="submit" disabled={!validateForm()}>
+                Add Lecture
+              </Button>
+            </Form>
+        ) : ""
       ) : (
-        <div className="opened-lecture">
-          <Card style={{ width: "70rem" }}>
-            <Card.Body>
-              <Card.Title>{data[currentSlide].name}</Card.Title>
-              <Card.Text>{data[currentSlide].company.catchPhrase}</Card.Text>
-              <Card.Text>
-                <Button
-                  variant="outline-secondary"
-                  onClick={() => {
-                    if (currentSlide > 0) setCurrentSlide(currentSlide - 1);
-                  }}
-                  disabled={currentSlide === 0}
-                >
-                  Previous Slide
+          lectures[openedLecture].slides.length !== 0 ? (
+            <div>
+              <OpenedLecture currentLecture = {lectures[openedLecture]} postSlides={postSlides} />
+              <Button onClick={closeLecture}>
+                Go back
+              </Button>
+            </div>
+          ) : (
+            <div>
+              <Form onSubmit={submitSlideHandler}>
+                <Form.Group size="lg" controlId="username">
+                  <Form.Label>Title</Form.Label>
+                  <Form.Control
+                      autoFocus
+                      type="title"
+                      value={slideTitle}
+                      onChange={(e) => setSlideTitle(e.target.value)}
+                  />
+                </Form.Group>
+                <Form.Group size="lg" controlId="password">
+                  <Form.Label>Description</Form.Label>
+                  <Form.Control
+                      type="description"
+                      value={slideDescription}
+                      onChange={(e) => setSlideDescription(e.target.value)}
+                  />
+                </Form.Group>
+
+                <Button block size="lg" type="submit" disabled={!validateForm()}>
+                  Add Slide
                 </Button>
-                {`     ${currentSlide + 1}     `}
-                <Button
-                  variant="outline-secondary"
-                  onClick={() => {
-                    if (currentSlide < data.length - 1)
-                      setCurrentSlide(currentSlide + 1);
-                  }}
-                  disabled={currentSlide === data.length - 1}
-                >
-                  Next Slide
-                </Button>
-              </Card.Text>
-            </Card.Body>
-          </Card>
-        </div>
+              </Form>
+            </div>
+          )
       )}
     </div>
   );
 }
+
+export default Lectures
