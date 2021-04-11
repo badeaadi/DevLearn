@@ -37,7 +37,6 @@ namespace DevLearn.Controllers
 
             var problem = new Problem
             {
-                IdProblem = problemData.IdLecture,
                 Link = problemData.ProblemLink,
                 Dificultate = problemData.ProblemDifficulty
             };
@@ -53,8 +52,6 @@ namespace DevLearn.Controllers
         {
             var problem = DbContext.Problems.FirstOrDefault(g => g.IdProblem == id);
 
-
-            problem.IdProblem = problemData.IdLecture;
             problem.Link = problemData.ProblemLink;
             problem.Dificultate = problemData.ProblemDifficulty;
             
